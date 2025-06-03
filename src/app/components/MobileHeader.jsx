@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { DotsThreeOutlineVerticalIcon } from "@phosphor-icons/react/dist/ssr";
 import {
   getSubjectIcon,
   getSubjectColor,

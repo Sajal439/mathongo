@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import chapterData from "@/app/data/all_subjects_chapter_data.json";
-import MobileHeader from "./MobileHeader";
-import MainContent from "./MainContent";
-import Sidebar from "./Sidebar";
+import MobileHeader from "./MobileHeader.jsx";
+import MainContent from "./MainContent.jsx";
+import Sidebar from "./Sidebar.jsx";
 
 export default function Component() {
   const [selectedSubject, setSelectedSubject] = useState("Physics");

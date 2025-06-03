@@ -1,6 +1,6 @@
 import DesktopHeader from "./DesktopHeader";
 import ChapterList from "./ChapterList";
-import Filters from "./Filters";
+import Filters from "./Filters.jsx";
 
 export default function MainContent({
   selectedSubject,

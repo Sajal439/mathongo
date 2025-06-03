@@ -1,6 +1,5 @@
-import { Button } from "@/components/ui/button";
 import SubjectNavItem from "./SubjectNavItem";
-import { CheckCircleIcon, XCircleIcon } from "@phosphor-icons/react";
+import { CheckCircleIcon } from "@phosphor-icons/react";
 
 export default function Sidebar({
   selectedSubject,
