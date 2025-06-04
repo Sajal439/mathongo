@@ -20,12 +20,12 @@ export default function Filters({
   units,
 }) {
   return (
-    <div className="overflow-x-auto mb-6 pb-2 pt-2">
+    <div className="overflow-x-auto mb-6 pb-2 pt-2 pl-2">
       <div className="flex items-center gap-3 min-w-max">
         <Select value={selectedClass} onValueChange={setSelectedClass}>
-          <SelectTrigger className="w-[130px] rounded-full border-[#eaedf1] bg-white hover:bg-gray-50 hover:border-gray-300 transition-colors">
+          <SelectTrigger className="w-[90px] rounded-xl border-[#eaedf1] bg-white hover:bg-gray-50 hover:border-gray-300 transition-colors focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none">
             <SelectValue>
-              {selectedClass === "all" ? "All Classes" : selectedClass}
+              {selectedClass === "all" ? "Class" : selectedClass}
             </SelectValue>
           </SelectTrigger>
           <SelectContent className="bg-white border-[#eaedf1]">
@@ -48,9 +48,9 @@ export default function Filters({
         </Select>
 
         <Select value={selectedUnit} onValueChange={setSelectedUnit}>
-          <SelectTrigger className="w-[130px] rounded-full border-[#eaedf1] bg-white hover:bg-gray-50 hover:border-gray-300 transition-colors">
+          <SelectTrigger className="w-[90px] rounded-xl border-[#eaedf1] bg-white hover:bg-gray-50 hover:border-gray-300 transition-colors focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none">
             <SelectValue>
-              {selectedUnit === "all" ? "All Units" : selectedUnit}
+              {selectedUnit === "all" ? "Units" : selectedUnit}
             </SelectValue>
           </SelectTrigger>
           <SelectContent className="bg-white border-[#eaedf1]">
@@ -71,12 +71,12 @@ export default function Filters({
             ))}
           </SelectContent>
         </Select>
-
+        <div className="h-5 w-px bg-[#eaedf1]"></div>
         <Button
           variant="outline"
-          className={`whitespace-nowrap rounded-full ${
+          className={`whitespace-nowrap rounded-xl ${
             selectedStatus === "Not Started" ? "bg-gray-100" : ""
-          } text-[#505d79] border-[#eaedf1] hover:bg-gray-100 hover:border-gray-300 transition-colors`}
+          } text-black font-normal border-[#eaedf1] hover:bg-gray-100 hover:border-gray-300 transition-colors`}
           onClick={() =>
             setSelectedStatus(
               selectedStatus === "Not Started" ? "all" : "Not Started"
@@ -88,7 +88,7 @@ export default function Filters({
 
         <Button
           variant="outline"
-          className={`whitespace-nowrap rounded-full ${
+          className={`whitespace-nowrap rounded-xl ${
             showWeakChapters ? "bg-[#fff5eb]" : ""
           } text-[#ff913a] border-[#ff913a] hover:bg-[#fff5eb] hover:border-[#ff8020] transition-colors`}
           onClick={() => setShowWeakChapters(!showWeakChapters)}

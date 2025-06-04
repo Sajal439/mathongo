@@ -16,12 +16,15 @@ export default function ChapterCard({ chapter }) {
             </span>
           )}
         </div>
-        <div className="flex flex-wrap items-center gap-3 md:gap-6 text-xs md:text-sm ml-7 sm:ml-0">
-          <span className="text-[#505d79] transition-colors">
+        <div className="flex flex-wrap items-center ml-7 sm:ml-0">
+          <span className="text-[#505d79] transition-colors py-1">
             {getChapterStats(chapter)}
           </span>
+
+          <div className="h-4 w-px bg-[#eaedf1] mx-3 self-center"></div>
+
           <span
-            className={`font-medium ${
+            className={`font-medium py-1 ${
               (chapter.questionSolved || 0) > 0
                 ? "text-[#0086ff]"
                 : "text-[#505d79] dark:text-gray-400"
@@ -29,9 +32,9 @@ export default function ChapterCard({ chapter }) {
           >
             {getChapterTotal(chapter)}
           </span>
-          {chapter.status === "Completed" && (
+          {/* {chapter.status === "Completed" && (
             <LightningIcon size={16} color="green" />
-          )}
+          )} */}
         </div>
       </div>
     </div>

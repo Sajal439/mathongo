@@ -17,7 +17,7 @@ export default function MainContent({
   filteredChapters,
 }) {
   return (
-    <div className="flex-1 p-4 md:p-8 overflow-auto bg-white">
+    <div className="flex-1 p-4 md:p-8 overflow-auto bg-white border border-[#eaedf1] ">
       <DesktopHeader selectedSubject={selectedSubject} />
 
       <Filters

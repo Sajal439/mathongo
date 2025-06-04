@@ -8,13 +8,13 @@ export default function Sidebar({
 }) {
   return (
     <div
-      className={`${
+      className={`ml-20 w-full ${
         sidebarOpen ? "block" : "hidden"
-      } md:block fixed md:relative inset-0 z-50 md:z-0 md:w-80 bg-[#f2f5fb] p-6 border-r border-[#eaedf1] overflow-auto`}
+      } md:block fixed md:relative inset-0 z-50 md:z-0 md:w-80 bg-white p-6 border-r border-[#eaedf1] overflow-auto`}
     >
       {/* JEE Main Header */}
       <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
+        <div className="flex items-center justify-center gap-3 mb-2">
           <div className="w-6 h-6 bg-[#ff913a] rounded-full flex items-center justify-center">
             <CheckCircleIcon size={16} className="text-white" />
           </div>

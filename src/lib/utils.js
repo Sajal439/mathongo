@@ -109,3 +109,50 @@ export const getActiveTabStyles = (subject) => {
       return "border-[#0086ff] text-[#0086ff]";
   }
 };
+
+export function sortChapters(chapters, method, direction) {
+  const sortedChapters = [...chapters];
+
+  switch (method) {
+    case "name":
+      sortedChapters.sort((a, b) => {
+        const comparison = a.chapter.localeCompare(b.chapter);
+        return direction === "asc" ? comparison : -comparison;
+      });
+      break;
+
+    case "questionsSolved":
+      sortedChapters.sort((a, b) => {
+        const aValue = a.questionSolved || 0;
+        const bValue = b.questionSolved || 0;
+        return direction === "asc" ? aValue - bValue : bValue - aValue;
+      });
+      break;
+
+    case "weakChapters":
+      sortedChapters.sort((a, b) => {
+        // Sort weak chapters first or last based on direction
+        if (a.isWeakChapter && !b.isWeakChapter)
+          return direction === "asc" ? -1 : 1;
+        if (!a.isWeakChapter && b.isWeakChapter)
+          return direction === "asc" ? 1 : -1;
+        return 0;
+      });
+      break;
+
+    case "progress":
+      sortedChapters.sort((a, b) => {
+        const aProgress = (a.questionSolved || 0) / (a.totalQuestions || 1);
+        const bProgress = (b.questionSolved || 0) / (b.totalQuestions || 1);
+        return direction === "asc"
+          ? aProgress - bProgress
+          : bProgress - aProgress;
+      });
+      break;
+
+    default:
+      break;
+  }
+
+  return sortedChapters;
+}
