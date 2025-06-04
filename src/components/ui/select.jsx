@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
@@ -5,6 +7,19 @@ import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 function Select({ ...props }) {
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    // Return a placeholder with similar dimensions to avoid layout shift
+    return (
+      <div className="w-fit h-9 rounded-md border bg-transparent px-3 py-2" />
+    );
+  }
+
   return <SelectPrimitive.Root data-slot="select" {...props} />;
 }
 
