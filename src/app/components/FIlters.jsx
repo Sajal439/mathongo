@@ -20,7 +20,7 @@ export default function Filters({
   units,
 }) {
   return (
-    <div className="overflow-x-auto mb-6 pb-2">
+    <div className="overflow-x-auto mb-6 pb-2 pt-2">
       <div className="flex items-center gap-3 min-w-max">
         <Select value={selectedClass} onValueChange={setSelectedClass}>
           <SelectTrigger className="w-[130px] rounded-full border-[#eaedf1] bg-white hover:bg-gray-50 hover:border-gray-300 transition-colors">
