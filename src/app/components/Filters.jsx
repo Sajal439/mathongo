@@ -1,3 +1,4 @@
+import { useSelector, useDispatch } from "react-redux";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -6,23 +7,46 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-export default function Filters({
-  selectedClass,
+import {
   setSelectedClass,
-  selectedUnit,
   setSelectedUnit,
-  selectedStatus,
   setSelectedStatus,
-  showWeakChapters,
   setShowWeakChapters,
-  classes,
-  units,
-}) {
+} from "@/redux/features/filtersSlice";
+
+export default function Filters() {
+  const dispatch = useDispatch();
+  const selectedSubject = useSelector(
+    (state) => state.subjects.selectedSubject
+  );
+  const { selectedClass, selectedUnit, selectedStatus, showWeakChapters } =
+    useSelector((state) => state.filters);
+  const allChapters = useSelector((state) => state.subjects.allChapters);
+
+  // Derive classes and units from the selected subject's chapters
+  const classes = [
+    ...new Set(
+      allChapters
+        .filter((c) => c.subject === selectedSubject)
+        .map((c) => c.class)
+    ),
+  ];
+
+  const units = [
+    ...new Set(
+      allChapters
+        .filter((c) => c.subject === selectedSubject)
+        .map((c) => c.unit)
+    ),
+  ];
+
   return (
     <div className="overflow-x-auto mb-6 pb-2 pt-2 pl-2">
       <div className="flex items-center gap-3 min-w-max">
-        <Select value={selectedClass} onValueChange={setSelectedClass}>
+        <Select
+          value={selectedClass}
+          onValueChange={(value) => dispatch(setSelectedClass(value))}
+        >
           <SelectTrigger className="w-[90px] rounded-xl border-[#eaedf1] bg-white hover:bg-gray-50 hover:border-gray-300 transition-colors focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none">
             <SelectValue>
               {selectedClass === "all" ? "Class" : selectedClass}
@@ -35,19 +59,23 @@ export default function Filters({
             >
               All Classes
             </SelectItem>
-            {classes.map((cls) => (
-              <SelectItem
-                key={cls}
-                value={cls}
-                className="hover:bg-gray-50 cursor-pointer transition-colors"
-              >
-                {cls}
-              </SelectItem>
-            ))}
+            {classes &&
+              classes.map((cls) => (
+                <SelectItem
+                  key={cls}
+                  value={cls}
+                  className="hover:bg-gray-50 cursor-pointer transition-colors"
+                >
+                  {cls}
+                </SelectItem>
+              ))}
           </SelectContent>
         </Select>
 
-        <Select value={selectedUnit} onValueChange={setSelectedUnit}>
+        <Select
+          value={selectedUnit}
+          onValueChange={(value) => dispatch(setSelectedUnit(value))}
+        >
           <SelectTrigger className="w-[90px] rounded-xl border-[#eaedf1] bg-white hover:bg-gray-50 hover:border-gray-300 transition-colors focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none">
             <SelectValue>
               {selectedUnit === "all" ? "Units" : selectedUnit}
@@ -60,15 +88,16 @@ export default function Filters({
             >
               All Units
             </SelectItem>
-            {units.map((unit) => (
-              <SelectItem
-                key={unit}
-                value={unit}
-                className="hover:bg-gray-50 cursor-pointer transition-colors"
-              >
-                {unit}
-              </SelectItem>
-            ))}
+            {units &&
+              units.map((unit) => (
+                <SelectItem
+                  key={unit}
+                  value={unit}
+                  className="hover:bg-gray-50 cursor-pointer transition-colors"
+                >
+                  {unit}
+                </SelectItem>
+              ))}
           </SelectContent>
         </Select>
         <div className="h-5 w-px bg-[#eaedf1]"></div>
@@ -78,8 +107,10 @@ export default function Filters({
             selectedStatus === "Not Started" ? "bg-gray-100" : ""
           } text-black font-normal border-[#eaedf1] hover:bg-gray-100 hover:border-gray-300 transition-colors`}
           onClick={() =>
-            setSelectedStatus(
-              selectedStatus === "Not Started" ? "all" : "Not Started"
+            dispatch(
+              setSelectedStatus(
+                selectedStatus === "Not Started" ? "all" : "Not Started"
+              )
             )
           }
         >
@@ -91,7 +122,7 @@ export default function Filters({
           className={`whitespace-nowrap rounded-xl ${
             showWeakChapters ? "bg-[#fff5eb]" : ""
           } text-[#ff913a] border-[#ff913a] hover:bg-[#fff5eb] hover:border-[#ff8020] transition-colors`}
-          onClick={() => setShowWeakChapters(!showWeakChapters)}
+          onClick={() => dispatch(setShowWeakChapters(!showWeakChapters))}
         >
           Weak Chapters
         </Button>

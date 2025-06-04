@@ -1,3 +1,5 @@
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react"; // Remove useState import
 import { Button } from "@/components/ui/button";
 import ChapterCard from "./ChapterCard.jsx";
 import {
@@ -5,42 +7,27 @@ import {
   CaretDownIcon,
   CaretUpIcon,
 } from "@phosphor-icons/react";
-import { useState, useEffect } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { sortChapters } from "@/lib/utils";
+import { updateSort, updateSortedChapters } from "@/redux/features/uiSlice";
 
 export default function ChapterList({ filteredChapters }) {
-  const [sortedChapters, setSortedChapters] = useState([...filteredChapters]);
-  const [sortMethod, setSortMethod] = useState("default");
-  const [sortDirection, setSortDirection] = useState("asc");
+  const dispatch = useDispatch();
+  const { sortMethod, sortDirection, sortedChapters } = useSelector(
+    (state) => state.ui
+  );
 
+  // Update sorted chapters in Redux when filters or sort options change
   useEffect(() => {
-    setSortedChapters([...filteredChapters]);
-  }, [filteredChapters]);
+    dispatch(updateSortedChapters(filteredChapters));
+  }, [dispatch, filteredChapters, sortMethod, sortDirection]);
 
   const handleSort = (method) => {
-    const newDirection =
-      method === sortMethod && sortDirection === "asc" ? "desc" : "asc";
-
-    if (method !== sortMethod) {
-      setSortMethod(method);
-      setSortDirection("asc");
-    } else {
-      setSortDirection(newDirection);
-    }
-
-    const newSortedChapters = sortChapters(
-      filteredChapters,
-      method,
-      method === sortMethod ? newDirection : "asc"
-    );
-
-    setSortedChapters(newSortedChapters);
+    dispatch(updateSort(method));
   };
 
   const getSortIcon = (method) => {
@@ -54,7 +41,7 @@ export default function ChapterList({ filteredChapters }) {
 
   return (
     <>
-      <div className="flex items-center justify-between mb-4  ">
+      <div className="flex items-center justify-between mb-4">
         <p className="text-sm md:text-base text-[#141313] transition-colors">
           Showing all chapters ({filteredChapters.length})
         </p>

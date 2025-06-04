@@ -1,6 +1,4 @@
 import { getChapterIcon, getChapterTotal, getChapterStats } from "@/lib/utils";
-import { LightningIcon } from "@phosphor-icons/react";
-
 export default function ChapterCard({ chapter }) {
   return (
     <div className="bg-white  border-[#eaedf1] border-[1.5px] rounded-lg p-3 md:p-4 hover:shadow-sm  transition-all">

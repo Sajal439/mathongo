@@ -1,65 +1,52 @@
 "use client";
 
-import { useState } from "react";
-import chapterData from "@/app/data/all_subjects_chapter_data.json";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import MobileHeader from "./MobileHeader.jsx";
 import MainContent from "./MainContent.jsx";
 import Sidebar from "./Sidebar.jsx";
+import { toggleSidebar, setSidebarOpen } from "@/redux/features/uiSlice";
+import { setSelectedSubject, updateFilteredChapters } from "@/redux/features/subjectSlice.js";
 
 export default function Component() {
-  const [selectedSubject, setSelectedSubject] = useState("Physics");
-  const [selectedClass, setSelectedClass] = useState("all");
-  const [selectedUnit, setSelectedUnit] = useState("all");
-  const [selectedStatus, setSelectedStatus] = useState("all");
-  const [showWeakChapters, setShowWeakChapters] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  // Filter chapters based on selected filters
-  const filteredChapters = chapterData.allSubjectsChapterData.filter(
-    (chapter) => {
-      return (
-        chapter.subject === selectedSubject &&
-        (selectedClass === "all" || chapter.class === selectedClass) &&
-        (selectedUnit === "all" || chapter.unit === selectedUnit) &&
-        (selectedStatus === "all" || chapter.status === selectedStatus) &&
-        (!showWeakChapters || chapter.isWeakChapter)
-      );
-    }
+  const dispatch = useDispatch();
+  const selectedSubject = useSelector(
+    (state) => state.subjects.selectedSubject
   );
+  const { selectedClass, selectedUnit, selectedStatus, showWeakChapters } =
+    useSelector((state) => state.filters);
+  const sidebarOpen = useSelector((state) => state.ui.sidebarOpen);
 
-  // Get unique classes and units for the selected subject for filter dropdowns
-  const classes = [
-    ...new Set(
-      chapterData.allSubjectsChapterData
-        .filter((c) => c.subject === selectedSubject)
-        .map((c) => c.class)
-    ),
-  ];
-
-  const units = [
-    ...new Set(
-      chapterData.allSubjectsChapterData
-        .filter((c) => c.subject === selectedSubject)
-        .map((c) => c.unit)
-    ),
-  ];
-
-  // Function to toggle sidebar on mobile
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
+  // Update filtered chapters when filters change
+  useEffect(() => {
+    dispatch(
+      updateFilteredChapters({
+        selectedClass,
+        selectedUnit,
+        selectedStatus,
+        showWeakChapters,
+      })
+    );
+  }, [
+    dispatch,
+    selectedSubject,
+    selectedClass,
+    selectedUnit,
+    selectedStatus,
+    showWeakChapters,
+  ]);
 
   // Function to select subject and close sidebar on mobile
   const selectSubjectAndClose = (subject) => {
-    setSelectedSubject(subject);
-    setSidebarOpen(false);
+    dispatch(setSelectedSubject(subject));
+    dispatch(setSidebarOpen(false));
   };
 
   return (
     <div className="flex flex-col md:flex-row h-screen bg-white relative">
       <MobileHeader
         selectedSubject={selectedSubject}
-        toggleSidebar={toggleSidebar}
+        toggleSidebar={() => dispatch(toggleSidebar())}
         selectSubjectAndClose={selectSubjectAndClose}
       />
 
@@ -67,31 +54,18 @@ export default function Component() {
         selectedSubject={selectedSubject}
         selectSubjectAndClose={selectSubjectAndClose}
         sidebarOpen={sidebarOpen}
-        toggleSidebar={toggleSidebar}
+        toggleSidebar={() => dispatch(toggleSidebar())}
       />
 
       {/* Overlay for mobile when sidebar is open */}
       {sidebarOpen && (
         <div
           className="md:hidden fixed inset-0 bg-black/20 z-40"
-          onClick={toggleSidebar}
+          onClick={() => dispatch(toggleSidebar())}
         />
       )}
 
-      <MainContent
-        selectedSubject={selectedSubject}
-        selectedClass={selectedClass}
-        setSelectedClass={setSelectedClass}
-        selectedUnit={selectedUnit}
-        setSelectedUnit={setSelectedUnit}
-        selectedStatus={selectedStatus}
-        setSelectedStatus={setSelectedStatus}
-        showWeakChapters={showWeakChapters}
-        setShowWeakChapters={setShowWeakChapters}
-        classes={classes}
-        units={units}
-        filteredChapters={filteredChapters}
-      />
+      <MainContent />
     </div>
   );
 }
