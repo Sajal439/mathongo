@@ -54,16 +54,16 @@ export default function ChapterList({ filteredChapters }) {
 
   return (
     <>
-      <div className="flex items-center justify-between mb-4">
-        <p className="text-sm md:text-base text-[#505d79] dark:text-gray-400 transition-colors">
-          Showing {filteredChapters.length} chapters
+      <div className="flex items-center justify-between mb-4  ">
+        <p className="text-sm md:text-base text-[#141313] transition-colors">
+          Showing all chapters ({filteredChapters.length})
         </p>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
-              className="text-[#0086ff] hover:text-[#0086ff] hover:bg-[#e1e8f5] dark:hover:bg-blue-900/20 focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none"
+              className="text-[#0086ff] hover:bg-[#e1e8f5] dark:hover:bg-blue-900/20 focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none"
             >
               <ArrowsDownUpIcon size={16} className="mr-1.5" />
               <span className="hidden sm:inline">Sort</span>
@@ -71,28 +71,28 @@ export default function ChapterList({ filteredChapters }) {
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56 bg-white border-[#eaedf1]">
             <DropdownMenuItem
-              className="flex justify-between items-center cursor-pointer hover:bg-[#f5f8ff] hover:text-[#0086ff] transition-colors"
+              className="flex justify-between items-center cursor-pointer hover:bg-[#f5f8ff] transition-colors"
               onClick={() => handleSort("name")}
             >
               <span>Chapter Name</span>
               {getSortIcon("name")}
             </DropdownMenuItem>
             <DropdownMenuItem
-              className="flex justify-between items-center cursor-pointer hover:bg-[#f5f8ff] hover:text-[#0086ff] transition-colors"
+              className="flex justify-between items-center cursor-pointer hover:bg-[#f5f8ff] transition-colors"
               onClick={() => handleSort("questionsSolved")}
             >
               <span>Questions Solved</span>
               {getSortIcon("questionsSolved")}
             </DropdownMenuItem>
             <DropdownMenuItem
-              className="flex justify-between items-center cursor-pointer hover:bg-[#f5f8ff] hover:text-[#0086ff] transition-colors"
+              className="flex justify-between items-center cursor-pointer hover:bg-[#f5f8ff] transition-colors"
               onClick={() => handleSort("weakChapters")}
             >
               <span>Weak Chapters</span>
               {getSortIcon("weakChapters")}
             </DropdownMenuItem>
             <DropdownMenuItem
-              className="flex justify-between items-center cursor-pointer hover:bg-[#f5f8ff] hover:text-[#0086ff] transition-colors"
+              className="flex justify-between items-center cursor-pointer hover:bg-[#f5f8ff] transition-colors"
               onClick={() => handleSort("progress")}
             >
               <span>Progress</span>

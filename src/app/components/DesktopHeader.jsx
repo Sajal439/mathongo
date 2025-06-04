@@ -1,5 +1,6 @@
 "use client";
 
+import { ModeToggle } from "@/components/ModeToggle";
 import { getSubjectIcon, getSubjectColor } from "@/lib/utils";
 
 export default function DesktopHeader({ selectedSubject }) {
@@ -18,6 +19,7 @@ export default function DesktopHeader({ selectedSubject }) {
             {selectedSubject} PYQs
           </h1>
         </div>
+        <div className="absolute right-0 top-0">{/* <ModeToggle /> */}</div>
         <p className="text-[#505d79]">
           Chapter-wise Collection of {selectedSubject} PYQs
         </p>

@@ -3,7 +3,7 @@ import { LightningIcon } from "@phosphor-icons/react";
 
 export default function ChapterCard({ chapter }) {
   return (
-    <div className="bg-white  border-[#eaedf1]  rounded-lg p-3 md:p-4 hover:shadow-sm  transition-all">
+    <div className="bg-white  border-[#eaedf1] border-[1.5px] rounded-lg p-3 md:p-4 hover:shadow-sm  transition-all">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <div className="flex items-center gap-3">
           {getChapterIcon(chapter)}
@@ -32,9 +32,6 @@ export default function ChapterCard({ chapter }) {
           >
             {getChapterTotal(chapter)}
           </span>
-          {/* {chapter.status === "Completed" && (
-            <LightningIcon size={16} color="green" />
-          )} */}
         </div>
       </div>
     </div>
