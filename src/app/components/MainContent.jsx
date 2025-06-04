@@ -1,5 +1,5 @@
-import DesktopHeader from "./DesktopHeader";
-import ChapterList from "./ChapterList";
+import DesktopHeader from "./DesktopHeader.jsx";
+import ChapterList from "./ChapterList.jsx";
 import Filters from "./Filters.jsx";
 
 export default function MainContent({

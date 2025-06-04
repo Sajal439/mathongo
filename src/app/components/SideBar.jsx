@@ -1,4 +1,4 @@
-import SubjectNavItem from "./SubjectNavItem";
+import SubjectNavItem from "./SubjectNavItem.jsx";
 import { CheckCircleIcon } from "@phosphor-icons/react";
 
 export default function Sidebar({

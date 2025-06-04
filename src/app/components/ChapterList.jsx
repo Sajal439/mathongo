@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import ChapterCard from "./ChapterCard";
+import ChapterCard from "./ChapterCard.jsx";
 import { ArrowsDownUpIcon } from "@phosphor-icons/react";
 
 export default function ChapterList({ filteredChapters }) {
