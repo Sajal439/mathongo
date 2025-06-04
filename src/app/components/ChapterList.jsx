@@ -50,7 +50,7 @@ export default function ChapterList({ filteredChapters }) {
           <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
-              className="text-[#0086ff] hover:bg-[#e1e8f5] dark:hover:bg-blue-900/20 focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none"
+              className="text-[#0086ff] hover:bg-[#e1e8f5]  focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none"
             >
               <ArrowsDownUpIcon size={16} className="mr-1.5" />
               <span className="hidden sm:inline">Sort</span>
@@ -95,8 +95,8 @@ export default function ChapterList({ filteredChapters }) {
         ))}
 
         {sortedChapters.length === 0 && (
-          <div className="bg-white dark:bg-gray-800 border border-[#eaedf1] dark:border-gray-700 rounded-lg p-8 text-center transition-colors">
-            <p className="text-[#505d79] dark:text-gray-400">
+          <div className="bg-white  border-[#eaedf1]  rounded-lg p-8 text-center transition-colors">
+            <p className="text-[#505d79] ">
               No chapters match your filters
             </p>
           </div>

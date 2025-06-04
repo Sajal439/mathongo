@@ -25,7 +25,7 @@ export default function ChapterCard({ chapter }) {
             className={`font-medium py-1 ${
               (chapter.questionSolved || 0) > 0
                 ? "text-[#0086ff]"
-                : "text-[#505d79] dark:text-gray-400"
+                : "text-[#505d79]"
             } transition-colors`}
           >
             {getChapterTotal(chapter)}
