@@ -9,12 +9,9 @@ import {
   AtomIcon,
   FlaskIcon,
   MathOperationsIcon,
-  MonitorIcon,
-  MoonIcon,
   PulseIcon,
   RulerIcon,
   ScalesIcon,
-  SunIcon,
 } from "@phosphor-icons/react";
 import { RotateCcw, BookOpen } from "lucide-react";
 
