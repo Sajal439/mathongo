@@ -12,8 +12,9 @@ import {
   PulseIcon,
   RulerIcon,
   ScalesIcon,
+  BookOpenIcon,
+  ArrowClockwiseIcon,
 } from "@phosphor-icons/react";
-import { RotateCcw, BookOpen } from "lucide-react";
 
 // Helper function to get appropriate icon for each chapter
 export const getChapterIcon = (chapter) => {
@@ -26,7 +27,7 @@ export const getChapterIcon = (chapter) => {
   } else if (chapter.chapter.includes("Laws")) {
     return <ScalesIcon size={16} className="text-[#505d79]" />;
   } else if (chapter.chapter.includes("Rotation")) {
-    return <RotateCcw className="w-4 h-4 text-[#505d79]" />;
+    return <ArrowClockwiseIcon size={16} className="text-[#505d79]" />;
   } else if (chapter.chapter.includes("Gravitation")) {
     return <div className="w-4 h-4 rounded-full bg-[#ff913a]" />;
   } else if (
@@ -35,7 +36,7 @@ export const getChapterIcon = (chapter) => {
   ) {
     return <div className="w-4 h-4 rounded-full bg-[#0086ff]" />;
   } else {
-    return <BookOpen className="w-4 h-4 text-[#505d79]" />;
+    return <BookOpenIcon size={16} className="w-4 h-4 text-[#505d79]" />;
   }
 };
 
